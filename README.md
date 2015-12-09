@@ -1,3 +1,6 @@
+Forked from atmoz/sftp with as only modification that all users are chrooted in the same folder mounted under /sftp/
+
+
 atmoz/sftp
 ==========
 
