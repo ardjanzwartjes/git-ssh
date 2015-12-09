@@ -6,6 +6,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # sshd needs this directory to run
+RUN mkdir -p /sftp
+RUN chmod 555 /sftp
 RUN mkdir -p /var/run/sshd
 
 COPY sshd_config /etc/ssh/sshd_config
