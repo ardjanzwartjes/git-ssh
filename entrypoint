@@ -1,6 +1,6 @@
 #!/bin/bash
 
-userConfPath="/etc/sftp-users.conf"
+userConfPath="/config/sftp-users.conf"
 userConfFinalPath="/var/run/sftp-users.conf"
 
 function printHelp() {

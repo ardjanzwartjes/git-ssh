@@ -16,4 +16,6 @@ COPY README.md /
 
 EXPOSE 22
 
+VOLUME ["/config", "/sftp"]
+
 ENTRYPOINT ["/entrypoint"]
