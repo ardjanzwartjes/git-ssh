@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Adrian Dvergsdal [atmoz.net]
+MAINTAINER Ardjan Zwartjes
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server && \
