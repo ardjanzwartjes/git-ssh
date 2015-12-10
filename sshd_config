@@ -1,3 +1,4 @@
+Port 2200
 UseDNS no
 PermitRootLogin no
 Subsystem sftp internal-sftp
