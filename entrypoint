@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "cleaning up /etc/passwd"
+cat /etc/passwd | grep ^root | tee /etc/passwd
+
+echo "cleaning up /etc/shadow"
+cat /etc/shadow | grep ^root | tee /etc/shadow
+
+echo "creating new users"
+cat /config/sftp_users | sed -En 's/([^:]*):.*/\1:x:2:2::\/sftp:\/usr\/bin\/false/p' | newusers
+
+echo "setting passwords"
+cat /config/sftp_users | chpasswd
+
+echo "starting sshd"
+/usr/sbin/sshd -e -D
