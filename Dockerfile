@@ -1,21 +1,18 @@
-FROM debian:jessie
+FROM phusion:baseimage
 MAINTAINER Ardjan Zwartjes
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server && \
-    rm -rf /var/lib/apt/lists/*
-
 # sshd needs this directory to run
-RUN mkdir -p /sftp
 RUN chmod 555 /sftp
-RUN mkdir -p /var/run/sshd
+
+RUN cat /etc/passwd | grep ^root | tee /etc/passwd
+RUN cat /etc/shadow | grep ^root | tee /etc/shadow
+RUN cat /config/sftp_users | sed -En 's/([^:]*):.*/\1:x:2:2::\/sftp:\/usr\/bin\/false/p' | newusers
+RUN cat /config/sftp_users | chpasswd
 
 COPY sshd_config /etc/ssh/sshd_config
-COPY entrypoint /
-COPY README.md /
 
 EXPOSE 2200
 
-VOLUME ["/config", "/sftp"]
+VOLUME ["/config"]
 
-ENTRYPOINT ["/entrypoint"]
+ENTRYPOINT ["/usr/sbin/sshd", "-e", "-D"]
