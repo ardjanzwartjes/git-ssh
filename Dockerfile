@@ -13,7 +13,7 @@ RUN chmod 755 /usr/sbin/entrypoint
 
 RUN mkdir -p /etc/ssh
 
-RUN ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ''
 
 EXPOSE 2200
 
