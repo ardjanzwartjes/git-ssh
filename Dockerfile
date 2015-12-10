@@ -15,7 +15,7 @@ RUN mkdir -p /etc/ssh
 
 RUN ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ''
 
-EXPOSE 2200
+EXPOSE 22
 
 VOLUME ["/config"]
 

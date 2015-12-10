@@ -15,10 +15,10 @@ echo "creating sshd privilige separation user"
 useradd -M --non-unique --no-user-group --gid 2 --shell /usr/bin/false -u 2 sshd
 
 echo "creating new users"
-cat /config/sftp_users | sed -En 's/([^:]*):.*/\1:x:2:2::\/sftp:\/usr\/bin\/false/p' | newusers
+cat /config/sftp-users.conf | sed -En 's/([^:]*):.*/\1:x:2:2::\/sftp:\/usr\/bin\/false/p' | newusers
 
 echo "setting passwords"
-cat /config/sftp_users.conf | chpasswd
+cat /config/sftp-users.conf | chpasswd
 
 echo "starting sshd"
 /usr/sbin/sshd -e -D
