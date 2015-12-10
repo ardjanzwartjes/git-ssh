@@ -1,4 +1,4 @@
-FROM phusion:baseimage
+FROM phusion/baseimage:latest
 MAINTAINER Ardjan Zwartjes
 
 # sshd needs this directory to run
