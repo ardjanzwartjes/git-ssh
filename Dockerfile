@@ -5,7 +5,7 @@ MAINTAINER Ardjan Zwartjes
 RUN mkdir -p /ssh-git
 RUN chmod 775 /ssh-git
 
-RUN apt-get udate
+RUN apt-get update
 
 RUN apt-get install -qy git
 
