@@ -5,6 +5,7 @@ MAINTAINER Ardjan Zwartjes
 RUN mkdir -p /ssh-git
 RUN chmod 775 /ssh-git
 
+RUN apt-get install -qy git
 
 COPY sshd_config /etc/ssh/sshd_config
 
