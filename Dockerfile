@@ -2,8 +2,9 @@ FROM phusion/baseimage:latest
 MAINTAINER Ardjan Zwartjes
 
 # sshd needs this directory to run
-RUN mkdir -p /sftp
-RUN chmod 555 /sftp
+RUN mkdir -p /ssh-git
+RUN chmod 775 /ssh-git
+
 
 COPY sshd_config /etc/ssh/sshd_config
 

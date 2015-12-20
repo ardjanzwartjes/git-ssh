@@ -1,7 +1,7 @@
 UseDNS no
 PermitRootLogin no
 Subsystem sftp internal-sftp
-ChrootDirectory /sftp/
+ChrootDirectory /ssh-git/
 X11Forwarding no
 AllowTcpForwarding no
-ForceCommand internal-sftp
+PasswordAuthentication no

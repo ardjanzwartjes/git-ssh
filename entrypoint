@@ -11,14 +11,23 @@ cat /etc/group | grep ^root | tee /etc/group
 echo "creating sshd privilige separation group"
 groupadd --force --gid 2 sshd
 
+groupadd --force --gid 3 git
+
 echo "creating sshd privilige separation user"
 useradd -M --non-unique --no-user-group --gid 2 --shell /usr/bin/false -u 2 sshd
 
-echo "creating new users"
-cat /config/sftp-users.conf | sed -En 's/([^:]*):.*/\1:x:2:2::\/sftp:\/usr\/bin\/false/p' | newusers
+useradd --create-home --non-unique --no-user-group --gid 3 --shell /bin/bash --home /home/git -u 3 git 
 
-echo "setting passwords"
 cat /config/sftp-users.conf | chpasswd
+
+mkdir -p /home/git/.ssh/
+
+chown -R git:git /home/git
+
+chmod -R 555 /home/git
+
+
+cat /config/keys/* > /home/git/.ssh/authorized_keys
 
 echo "starting sshd"
 /usr/sbin/sshd -e -D
